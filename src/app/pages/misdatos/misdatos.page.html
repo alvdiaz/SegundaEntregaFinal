@@ -1,0 +1,125 @@
+<ion-header>
+  <ion-toolbar color="duoc-azul">
+    <div class="header-content">
+      <div class="logo-text">
+        <span class="duoc-yellow">Duoc</span>
+        <span class="duoc-white">UC</span>
+        <img src="assets/images/logo-uc.png" alt="Logo UC" class="logo-uc">
+      </div>
+      <ion-title class="text-left" #titulo>
+        Sistema de Asistencia 
+      </ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="background-image"></div>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>¡Bienvenido(a)!: {{usuario.nombre}} {{usuario.apellido}} </ion-card-title>
+      <ion-card-subtitle> Tus Datos: </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+   
+  <ion-list>
+    <br>
+    <ion-item>
+      <ion-label position="floating">Cuenta</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.cuenta"></ion-input>
+    </ion-item>  
+  
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.nombre"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.apellido"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.correo" class="ion-text-left"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Pregunta Secreta</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.preguntaSecreta"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Respuesta Secreta</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.respuestaSecreta"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Seleccione nivel</ion-label>
+      <ion-select placeholder="Seleccione nivel" [(ngModel)]="persona.nivelEducacional.id">
+        <ion-select-option *ngFor="let nivelEducacional of nivelesEducacionales" [value]="nivelEducacional.id">
+          {{nivelEducacional.nombre}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Fecha Nacimiento</ion-label>
+      <ion-input type="date" [(ngModel)]="persona.fechaNacimiento"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="usuario.password"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Repetir contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="usuario.password"></ion-input>
+    </ion-item>
+
+    <ion-button style="font-weight: 600;"  (click)="mostrarDatosPersona()" expand="block" shape="round" class="centered-item custom-font">
+    Mostrar Datos
+    </ion-button>
+
+    <ion-button style="font-weight: 600;"  (click)="actualizarDatos()" expand="block" shape="round" class="centered-item custom-font">
+      Actualizar Datos
+    </ion-button>
+
+    <ion-button style="font-weight: 600;"  (click)="limpiar()" expand="block" shape="round" class="centered-item custom-font">
+      Limpiar Datos
+    </ion-button>
+
+    <ion-button style="font-weight: 600;" color="danger"  (click)="cerrarSesion()" expand="block" shape="round" class="centered-item custom-font">
+      Cerrar sesión
+    </ion-button>
+
+
+  </ion-list> 
+  
+</ion-content>
+
+ 
+<ion-footer>
+  <ion-toolbar >
+      <ion-button (click)="MisdatosPage()">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>Mis Datos</ion-label>
+      </ion-button>
+    
+      <ion-button (click)="InicioPage()">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-button>
+    
+      <ion-button (click)="MiclasePage()">
+        <ion-icon name="school-outline"></ion-icon>
+        <ion-label>Mi Clase</ion-label>
+      </ion-button>
+  </ion-toolbar>
+</ion-footer>  
+
+
+
+<!-- Termina el Footer -->

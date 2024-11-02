@@ -1,0 +1,170 @@
+/* Estilos generales */
+ion-header,
+ion-footer {
+  background-color: #003366; /* Azul Duoc */
+  color: #ffffff; /* Blanco Duoc */
+
+  ion-title {
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-align: left;
+    color: #fdb913; /* Amarillo Duoc */
+  }
+}
+
+ion-content {
+  background-color: #ffffff !important; /* Fondo blanco */
+  color: #000000 !important; /* Letras negras */
+  padding: 1rem;
+
+  /* Clase que centra el contenido vertical y horizontalmente */
+  .centered-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+  }
+
+  /* Clase para centrar elementos individuales */
+  .centered-item {
+    text-align: center;
+    width: 100%;
+  }
+
+  ion-title {
+    h1, h2, p {
+      color: #000000 !important; /* Letras negras para estos elementos */
+    }
+  }
+
+  h4 {
+    color: #000000 !important; /* Color negro para h4 */
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  ion-item {
+    margin-bottom: 1rem;
+    background: transparent;
+    --color: #000000 !important; /* Color negro para los ion-item */
+
+    ion-label {
+      color: #000000 !important; /* Color negro para ion-label */
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    ion-input,
+    ion-select {
+      --background: #ffffff; /* Fondo blanco */
+      --placeholder-color: rgba(0, 0, 0, 0.6); /* Placeholder en tono gris */
+      --color: #000000 !important; /* Color negro para inputs y selects */
+      border-bottom: 1px solid #000000; /* Borde negro */
+    }
+
+    ion-select-option {
+      color: #000000 !important; /* Color negro para opciones de select */
+    }
+  }
+
+  ion-grid {
+    ion-row {
+      margin-top: 1rem;
+
+      ion-col {
+        text-align: center;
+
+        ion-button {
+          width: 100%;
+          background-color: #003366; /* Azul Duoc */
+          color: #ffffff; /* Blanco Duoc */
+          font-weight: bold;
+          font-size: 1rem;
+          padding: 0.75rem;
+
+          &:hover {
+            background-color: #fdb913; /* Amarillo Duoc */
+            color: #003366; /* Azul Duoc */
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Footer */
+ion-footer {
+  ion-title {
+    font-size: 1rem;
+    text-align: center;
+    color: #ffffff; /* Blanco */
+  }
+}
+
+
+.logo-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 4rem;
+  font-weight: 700; 
+
+  .duoc-yellow {
+    color: #F1B634; 
+  }
+
+  .duoc-white {
+    color: #FFFFFF; 
+  }
+}
+
+/* Estilo del contenedor del header para usar flexbox y alinear todo */
+.header-content {
+  display: flex;
+  align-items: center; /* Alinea los elementos verticalmente */
+  justify-content: space-between; /* Distribuye los elementos a lo largo del toolbar */
+  width: 100%; /* Asegura que el contenedor ocupe todo el ancho del toolbar */
+}
+
+/* Estilo del logo y texto "DuocUC" */
+.logo-text {
+  display: flex;
+  align-items: center; /* Alinea logo y texto verticalmente */
+}
+
+
+.logo-uc {
+  width: 30px; 
+  height: auto;
+  margin-left: 1px; /* Espacio entre el texto "UC" y el logo */
+}
+
+/* Estilo del texto "Duoc" y "UC" */
+.duoc-yellow, .duoc-white {
+  font-size: 25px; /* Ajusta el tamaño para alinear con el título del toolbar */
+  color: white;
+}
+
+.duoc-yellow {
+  color: #FFC72C; /* Color amarillo para el texto "Duoc" */
+}
+
+.background-image {
+  background-image: url('/assets/images/duocblur.png'); /* Cambia la ruta a la ubicación correcta de tu imagen */
+  background-size: cover; /* Para cubrir todo el fondo */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que se repita la imagen */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Envía la imagen al fondo */
+}     
+ion-card {
+  background: rgba(0, 0, 0, 0.897); /* Fondo blanco con transparencia */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0); /* Sombra suave */
+}
+

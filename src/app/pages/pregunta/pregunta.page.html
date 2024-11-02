@@ -1,0 +1,31 @@
+<ion-content>
+  <div class="centered-container">
+    <div class="forgot-password-card">
+      <img src="assets/images/duoc-logo2.png">
+
+      <h2>Sistema de asistencia DUOC UC</h2>
+
+      <h3>Recuperar contraseña</h3>
+      <p>Paso 2: Responde la pregunta secreta</p>
+
+      <!-- Aquí mostramos el nombre completo del usuario -->
+      <p>{{ usuarioActual?.nombre }}</p>
+
+      <ion-item>
+        <ion-label position="stacked">
+          <ion-icon slot="start" name="help-circle-outline"></ion-icon>
+          <!-- Aquí mostramos la pregunta secreta del usuario -->
+          {{ usuarioActual?.preguntaSecreta }}
+        </ion-label>
+        <br>
+        <!-- Campo para ingresar la respuesta a la pregunta secreta -->
+        <ion-input [(ngModel)]="respuestaIngresada" placeholder="Ingresa la respuesta"></ion-input>
+      </ion-item>
+
+      <!-- Botón que valida la respuesta -->
+      <ion-button expand="block" (click)="validarRespuesta()">Recuperar contraseña</ion-button>
+
+      <a href="#" class="login-link">Volver a Iniciar sesión</a>
+    </div>
+  </div>
+</ion-content>

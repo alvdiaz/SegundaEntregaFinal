@@ -1,0 +1,90 @@
+<!-- Comienza el Header -->
+<ion-header>
+  <ion-toolbar color="duoc-azul">
+    <div class="header-content">
+      <div class="logo-text">
+        <span class="duoc-yellow">Duoc</span>
+        <span class="duoc-white">UC</span>
+        <img src="assets/images/logo-uc.png" alt="Logo UC" class="logo-uc">
+      </div>
+      <ion-title class="text-left" #titulo>
+        Sistema de Asistencia 
+      </ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<!-- Termina  el Header -->
+
+
+
+<!-- Comienza el Content -->
+<ion-content #page class="ion-padding centered-content">
+  <div class="background-image"></div>
+
+
+  <br><br><br>
+  <!-- Comienzo del código QR -->
+  <ion-card class="ion-text-center" style="max-width: 350px; margin: 0 auto;">
+
+    <ion-card-header>
+      <ion-card-title>¡Bienvenido(a)!: <br> {{usuario.nombre}} {{usuario.apellido}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-header>
+      <ion-card-title> Sistema de asistencia </ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <p>Escanea el código QR para registrar tu asistencia a clases</p>
+      <br> 
+
+    
+      <!-- Botón de Detener Escaneo de QR -->
+      <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" expand="block" shape="round" color="danger">
+        <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
+        Detener escaneo de QR
+      </ion-button>
+
+        <!-- Fin del código QR -->
+
+
+
+      <!-- Contenedor de video y canvas -->
+      <div style="position: relative; margin-top: 15px;">
+        <video #video [hidden]="!escaneando" style="width: 100%; border-radius: 10px;"></video>
+        <canvas #canvas hidden></canvas>
+      </div>
+      <!-- Fin de video y canvas -->
+
+
+      <!-- Botón de Cerrar sesión -->
+      <ion-button style="font-weight: 600; color: white;" color="danger"  (click)="cerrarSesion()" expand="block" shape="round" class="centered-item custom-font">
+        Cerrar sesión
+    </ion-button>
+       <!-- Final de Cerrar sesión -->
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<!-- Termina el Content -->
+
+<!-- Comienza el Footer -->
+<ion-footer>
+  <ion-toolbar >
+      <ion-button (click)="MisdatosPage()">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>Mis Datos</ion-label>
+      </ion-button>
+    
+      <ion-button (click)="InicioPage()">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-button>
+    
+      <ion-button (click)="MiclasePage()">
+        <ion-icon name="school-outline"></ion-icon>
+        <ion-label>Mi Clase</ion-label>
+      </ion-button>
+  </ion-toolbar>
+</ion-footer>  
+<!-- Termina el Footer -->

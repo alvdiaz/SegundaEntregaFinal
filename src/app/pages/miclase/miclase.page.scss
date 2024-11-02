@@ -1,0 +1,207 @@
+/* Variables de colores institucionales DUOC UC */
+$duoc-azul: #003366;
+$duoc-amarillo: #fdb913;
+$duoc-blanco: #ffffff;
+
+/* Estilos generales */
+ion-header,
+ion-footer {
+  background-color: $duoc-azul;
+  color: $duoc-blanco;
+  ion-title {
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-align: left;
+    color: $duoc-amarillo;
+  }
+}
+
+ion-content {
+  background-color: $duoc-blanco;
+  padding: 1rem;
+
+  ion-title {
+    h1 {
+      color: $duoc-azul;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: $duoc-azul;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  h4 {
+    color: $duoc-azul;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  ion-item {
+    margin-bottom: 1rem;
+    background: transparent;
+    --color: $duoc-azul;
+
+    ion-label {
+      color: $duoc-azul;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    ion-input, ion-select {
+      --background: $duoc-blanco;
+      --placeholder-color: rgba($duoc-azul, 0.6);
+      --color: $duoc-azul;
+      border-bottom: 1px solid $duoc-azul;
+    }
+
+    ion-select-option {
+      color: $duoc-azul;
+    }
+  }
+
+  ion-grid {
+    ion-row {
+      margin-top: 1rem;
+
+      ion-col {
+        text-align: center;
+
+        ion-button {
+          width: 100%;
+          background-color: $duoc-azul;
+          color: $duoc-blanco;
+          font-weight: bold;
+          font-size: 1rem;
+          padding: 0.75rem;
+
+          &:hover {
+            background-color: $duoc-amarillo;
+            color: $duoc-azul;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Footer */
+ion-footer {
+  ion-title {
+    font-size: 1rem;
+    text-align: center;
+    color: $duoc-blanco;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Elimina los espacios entre bordes */
+  font-family: Arial, sans-serif; /* Fuente simple y formal */
+}
+
+th, td {
+  padding: 12px 15px;
+  border: 1px solid #ddd; /* Borde fino y gris claro */
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4; /* Color de fondo claro para el encabezado */
+  font-weight: bold;
+  color: #333; /* Texto oscuro para contraste */
+}
+
+td {
+  background-color: #fff; /* Fondo blanco */
+  color: #555; /* Texto gris oscuro */
+}
+
+tr:nth-child(even) td {
+  background-color: #f9f9f9; /* Alterna el color de fondo en filas pares */
+}
+
+tr:hover td {
+  background-color: #f1f1f1; /* Efecto hover para resaltar la fila */
+}
+
+.margin-top {
+  margin-top: 20px;
+}
+.background-image {
+  background-image: url('/assets/images/duocblur.png'); /* Cambia la ruta a la ubicación correcta de tu imagen */
+  background-size: cover; /* Para cubrir todo el fondo */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que se repita la imagen */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Envía la imagen al fondo */
+}     
+
+ion-card {
+  background: rgba(0, 0, 0, 0.897); /* Fondo blanco con transparencia */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0); /* Sombra suave */
+}
+ion-card-header {
+  background: $duoc-azul; /* Fondo del header con transparencia */
+}
+.white-text {
+  color: white;
+}
+
+.logo-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 4rem;
+  font-weight: 700; 
+
+  .duoc-yellow {
+    color: #F1B634; 
+  }
+
+  .duoc-white {
+    color: #FFFFFF; 
+  }
+}
+
+/* Estilo del contenedor del header para usar flexbox y alinear todo */
+.header-content {
+  display: flex;
+  align-items: center; /* Alinea los elementos verticalmente */
+  justify-content: space-between; /* Distribuye los elementos a lo largo del toolbar */
+  width: 100%; /* Asegura que el contenedor ocupe todo el ancho del toolbar */
+}
+
+/* Estilo del logo y texto "DuocUC" */
+.logo-text {
+  display: flex;
+  align-items: center; /* Alinea logo y texto verticalmente */
+}
+
+
+.logo-uc {
+  width: 30px; 
+  height: auto;
+  margin-left: 1px; /* Espacio entre el texto "UC" y el logo */
+}
+
+/* Estilo del texto "Duoc" y "UC" */
+.duoc-yellow, .duoc-white {
+  font-size: 25px; /* Ajusta el tamaño para alinear con el título del toolbar */
+  color: white;
+}
+
+.duoc-yellow {
+  color: #FFC72C; /* Color amarillo para el texto "Duoc" */
+}
+
+

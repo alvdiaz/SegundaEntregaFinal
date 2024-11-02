@@ -1,0 +1,122 @@
+<!-- Comienza el Header -->
+<ion-header>
+  <ion-toolbar color="duoc-azul">
+    <div class="header-content">
+      <div class="logo-text">
+        <span class="duoc-yellow">Duoc</span>
+        <span class="duoc-white">UC</span>
+        <img src="assets/images/logo-uc.png" alt="Logo UC" class="logo-uc">
+      </div>
+      <ion-title class="text-left" #titulo>
+        Sistema de Asistencia 
+      </ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<!-- Termina  el Header -->
+
+<!-- Comienza el Content -->
+<ion-content #page class="ion-padding">
+  <div class="background-image"></div>
+
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>¡Bienvenido(a)!: {{usuario.nombre}} {{usuario.apellido}} </ion-card-title>
+    </ion-card-header>
+    <ion-card-header color="duoc-azul">
+      <ion-card-title class="ion-text-center" style="color: white;">
+        Información de la Clase
+      </ion-card-title>
+    </ion-card-header>
+
+    <br>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="header-row">
+          <ion-col><strong>Bloque de Inicio</strong></ion-col>
+          <ion-col>{{ bloqueInicio }}</ion-col>
+        </ion-row>
+
+        <ion-row class="data-row">
+          <ion-col><strong>Bloque de Término</strong></ion-col>
+          <ion-col>{{ bloqueTermino }}</ion-col>
+        </ion-row>
+
+        <ion-row class="header-row">
+          <ion-col><strong>Día</strong></ion-col>
+          <ion-col>{{ dia }}</ion-col>
+        </ion-row>
+
+        <ion-row class="data-row">
+          <ion-col><strong>Hora de Inicio</strong></ion-col>
+          <ion-col>{{ horaInicio }}</ion-col>
+        </ion-row>
+
+        <ion-row class="header-row">
+          <ion-col><strong>Hora de Fin</strong></ion-col>
+          <ion-col>{{ horaFin }}</ion-col>
+        </ion-row>
+
+        <ion-row class="data-row">
+          <ion-col><strong>Sigla</strong></ion-col>
+          <ion-col>{{ idAsignatura }}</ion-col>
+        </ion-row>
+
+        <ion-row class="header-row">
+          <ion-col><strong>Nombre de Asignatura</strong></ion-col>
+          <ion-col>{{ nombreAsignatura }}</ion-col>
+        </ion-row>
+
+        <ion-row class="data-row">
+          <ion-col><strong>Nombre del Profesor</strong></ion-col>
+          <ion-col>{{ nombreProfesor }}</ion-col>
+        </ion-row>
+
+        <ion-row class="header-row">
+          <ion-col><strong>Sección</strong></ion-col>
+          <ion-col>{{ seccion }}</ion-col>
+        </ion-row>
+
+        <ion-row class="data-row">
+          <ion-col><strong>Sede</strong></ion-col>
+          <ion-col>{{ sede }}</ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <br><br>
+      
+      <ion-button style="font-weight: 600;" color="danger"  (click)="cerrarSesion()" expand="block" shape="round" class="centered-item custom-font">
+        Cerrar sesión
+    </ion-button>
+    </ion-card-content>
+
+   
+    
+
+</ion-card>
+
+</ion-content>
+<!-- Termina el Content -->
+
+<!-- Comienza el Footer -->
+<ion-footer>
+  <ion-toolbar >
+      <ion-button (click)="MisdatosPage()">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>Mis Datos</ion-label>
+      </ion-button>
+    
+      <ion-button (click)="InicioPage()">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-button>
+    
+      <ion-button (click)="MiclasePage()">
+        <ion-icon name="school-outline"></ion-icon>
+        <ion-label>Mi Clase</ion-label>
+      </ion-button>
+  </ion-toolbar>
+</ion-footer>  
+<!-- Termina el Footer -->

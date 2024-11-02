@@ -1,0 +1,74 @@
+<ion-content fullscreen>
+  <!-- Contenedor para la imagen de fondo -->
+  <div class="background-image">
+    <!-- Título y subtítulo del login -->
+   
+    <ion-header>
+      <div class="header">
+        <!-- Contenedor de logo y texto -->
+        <div class="logo-container">
+          <div class="logo-text">
+            <span class="duoc-yellow">Duoc</span>
+            <span class="duoc-white">UC</span>
+          </div>
+          <img src="assets/images/logo-uc.png" alt="Logo UC" class="logo-uc">
+        </div>
+
+        <div class="subtitulo">
+          Sistema de asistencia Duoc UC
+        </div>
+      </div>
+    </ion-header>
+
+  
+
+    <!-- Card de login -->
+    <div class="ion-padding-vertical">
+      <ion-card class="ion-text-center ion-padding-vertical">
+        <ion-card-title>
+          <ion-label>
+            <h2>¡Bienvenido!</h2>
+          </ion-label>
+        </ion-card-title>
+        <ion-card-content>
+          <!-- Input para el correo -->
+
+          <ion-item >
+            <ion-label position="floating">Cuenta</ion-label>
+            <br>
+            <ion-input 
+              type="text" 
+              [(ngModel)]="correo" 
+              placeholder="Ej: caranda">
+            </ion-input>
+          </ion-item>
+        
+          <!-- Input para la contraseña -->
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <br>
+            <ion-input 
+              type="password" 
+              [(ngModel)]="password" 
+              placeholder="Ej: ABC2244">
+            </ion-input>
+          </ion-item>
+
+
+          <!-- Botón de ingreso -->
+          <ion-row>
+            <ion-col size="12">
+              <ion-button shape="block"  (click)="login()">INGRESAR</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+        
+
+        <ion-label>
+          <br>
+          <a routerLink="/correo">Recuperar contraseña</a>
+        </ion-label>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

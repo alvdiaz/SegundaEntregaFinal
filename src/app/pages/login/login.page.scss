@@ -1,0 +1,137 @@
+/* Variables de colores basadas en la imagen */
+$duoc-azul: #003366;
+$duoc-amarillo: #F1B634;
+$texto-blanco: #ffffff;
+
+/* Estilos generales */
+ion-content {
+  .background-image {
+    background-image: url('/assets/images/1725086412.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Ocupa toda la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+ion-card {
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+  border-radius: 20px;
+  padding: 1.5rem;
+  width: 90%; /* Ajustamos el ancho del card para móviles */
+  max-width: 400px; /* Límite máximo para pantallas más grandes */
+
+  
+
+  ion-card-title h2 {
+    color: $duoc-amarillo;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  ion-item {
+    background: transparent;
+    --background: transparent;
+    --border-color: $texto-blanco; /* Bordes blancos */
+    --border-width: 2px; /* Ajustar grosor del borde */
+    --border-style: solid; /* Tipo de borde */
+    border-radius: 5px; /* Bordes redondeados para los cuadros */
+
+    ion-label {
+      color: $texto-blanco; /* Color blanco para los textos de los inputs */
+    }
+
+    ion-input {
+      color: $texto-blanco; /* Asegurar que el texto dentro de los inputs también sea blanco */
+    }
+  }
+
+  ion-button {
+    background-color: #FFFFFF;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    
+    &:hover {
+      background-color: $duoc-amarillo;
+      color: $duoc-azul;
+    }
+  }
+
+  a {
+    color: $duoc-amarillo;
+    font-weight: bold;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+// Fondo para el título DUOC UC - ASISTENCIA  duoc
+
+.header {
+  display: flex;
+  align-items: center;
+  flex-direction:column;
+  background-color:  rgba(0, 0, 0, 0.7); 
+  padding: 20px;
+  justify-content: space-between;
+
+  .logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 4rem;
+    font-weight: 700; 
+
+    .duoc-yellow {
+      color: #F1B634; 
+    }
+
+    .duoc-white {
+      color: #FFFFFF; 
+    }
+  }
+
+  .subtitulo {
+    color: #FFFFFF; 
+    font-family: 'Poppins', sans-serif; 
+    font-size: 1.2rem;
+    margin-top:5px;
+    text-align:center;
+
+    .duoc-text {
+      color: #F1B634; 
+      font-weight: bold;
+      font-size: 4rem;
+    }
+  }
+
+  
+  .logo-container {
+    display: flex;
+    align-items: center; 
+  }
+
+  .logo-uc {
+    width: 60px; 
+    height: auto;
+    margin-left: 3px; 
+  }
+
+
+
+
+
+
+
+
+
+
+}
