@@ -1,15 +1,31 @@
-import { InicioPage } from './../inicio/inicio.page';
 import { AfterViewInit, Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { AlertController, IonicSafeString, AnimationController, ToastController} from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
-import { Persona } from 'src/app/model/persona';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { LanguageComponent } from 'src/app/components/language/language.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { DataBaseService } from 'src/app/services/data-base.service';
+
+
+
 
 @Component({
   selector: 'app-misdatos',
   templateUrl: './misdatos.page.html',
   styleUrls: ['./misdatos.page.scss'],
+  standalone: true,
+  imports: [
+      CommonModule            // CGV-Permite usar directivas comunes de Angular
+    , FormsModule             // CGV-Permite usar formularios
+    , IonicModule             // CGV-Permite usar componentes de Ionic como IonContent, IonItem, etc.
+    , TranslateModule         // CGV-Permite usar pipe 'translate'
+    , LanguageComponent // CGV-Lista de idiomas
+  ]
 })
 export class MisdatosPage implements OnInit, AfterViewInit {
 
@@ -18,33 +34,51 @@ export class MisdatosPage implements OnInit, AfterViewInit {
 
 
 
-  public usuario: Usuario = new Usuario('','','','','','','');
-  public nivelesEducacionales: NivelEducacional[] = new NivelEducacional().getNivelesEducacionales();
-  public persona: Persona = new Persona();
+  public usuario: Usuario = new Usuario();
+  public nivelesEducacionales: NivelEducacional[] = []; // Lista de niveles educacionales
+  public fechaNacimientoInput: string = ''; // Fecha en formato para ion-datetime
 
+  
   constructor(
     private activeroute: ActivatedRoute,
     private router: Router,
     private alertController: AlertController,
     private animationController: AnimationController,
     private toastController: ToastController,
-    
+    private auth :AuthService,
+    private db: DataBaseService
 
-  ) {}
+
+  ) {
+    this.auth.usuarioAutenticado.subscribe((usuario) => {
+      console.log(usuario);
+      if (usuario) {
+        this.usuario = usuario;
+      }
+    });
+  }
 
   ngOnInit() {
-    // Verificar si recibimos los datos desde la página anterior
-    if (this.router.getCurrentNavigation()?.extras.state) {
-      const state = this.router.getCurrentNavigation()?.extras.state as { usuario: Usuario };
-      
-      this.usuario = state.usuario; // Recuperamos el usuario y lo asignamos
-  
-      // Si los datos de persona están disponibles, los asignamos a la entidad persona
-      if (state.usuario) {
-        this.persona.nombre = this.usuario.nombre;  // Por ejemplo, usar el nombre de usuario
-        // Asigna otros valores de persona si es necesario
-      }
+    this.nivelesEducacionales = NivelEducacional.getNivelesEducacionales();
+
+    // Convertir fechaNacimiento a formato 'yyyy-MM-dd' si tiene un valor inicial
+    if (this.usuario.fechaNacimiento) {
+      this.fechaNacimientoInput = this.formatDateForInput(this.usuario.fechaNacimiento);
     }
+  }
+
+  private formatDateForInput(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${year}-${month}-${day}`; // formato "YYYY-MM-DD" requerido por ion-datetime
+  }
+
+  // Actualizar fechaNacimiento cuando se seleccione una nueva fecha en ion-datetime
+  onFechaNacimientoChange(event: any) {
+    const selectedDate = event.detail.value; // Fecha seleccionada en formato "YYYY-MM-DD"
+    const [year, month, day] = selectedDate.split('-').map(Number);
+    this.usuario.fechaNacimiento = new Date(year, month - 1, day); // Convertir a Date
   }
   
   
@@ -88,19 +122,10 @@ export class MisdatosPage implements OnInit, AfterViewInit {
   // Función 1: Actualizar datos del usuario en la lista de usuarios válidos
 
 
-  // Función 2: Guardar en State y pasar usuario a ingreso.html al cerrar sesión
   public cerrarSesion(): void {
-    this.usuario.actualizarDatosEnLocalStorage();
-  
-    const navigationExtras: NavigationExtras = {
-      state: {
-        usuario: this.usuario // Pasar el objeto usuario actualizado
-      }
-    };
-    
-    this.router.navigate(['/login'], navigationExtras);
-  }
-
+    // Navegamos a la página de login
+    this.auth.logout();
+    }
 
   public MisdatosPage(): void {
     const navigationExtras: NavigationExtras = {
@@ -131,8 +156,8 @@ export class MisdatosPage implements OnInit, AfterViewInit {
   }
 
   public limpiarFormulario(): void {
-    for (const [key, value] of Object.entries(this.persona)) {
-      Object.defineProperty(this.persona, key, { value: '' });
+    for (const [key, value] of Object.entries(this.usuario)) {
+      Object.defineProperty(this.usuario, key, { value: '' });
     }
   }
 
@@ -164,8 +189,7 @@ export class MisdatosPage implements OnInit, AfterViewInit {
   Correo:   ${this.asignado(this.usuario.correo)} 
   Pregunta Secreta:   ${this.usuario.preguntaSecreta}
   Respuesta Secreta:${this.usuario.respuestaSecreta}  
-  Educación:   ${this.asignado(this.persona.nivelEducacional.getTextoNivelEducacional())} 
-  Nacimiento:  ${this.persona.getTextoFechaNacimiento()}
+
   Contraseña Nueva:   ${this.usuario.password}
   Contraseña Nueva:   ${this.usuario.password}
 
@@ -197,34 +221,34 @@ export class MisdatosPage implements OnInit, AfterViewInit {
 
   }
 
-  guardarCambiosEnModelo() {
-    // Guardar los cambios en localStorage
-    this.usuario.actualizarDatosEnLocalStorage();
-  }
+
+
 
   async actualizarDatos() {
+    try {
+      // Update the user in the database using guardarUsuario method from DataBaseService
+      await this.db.guardarUsuario(this.usuario);
+  
+      // Show success message
+      await this.mostrarMensajeExito();
+    } catch (error) {
+      console.error('Error updating user data:', error);
+      // Show an error message
+      await this.mostrarMensajeError('Hubo un problema al actualizar tus datos. Por favor, intenta nuevamente.');
+    }
+  }
+  
+  async mostrarMensajeError(mensaje: string) {
     const alert = await this.alertController.create({
-      header: 'Confirmar',
-      message: '¿Estás seguro de que deseas actualizar tus datos?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-        },
-        {
-          text: 'Actualizar',
-          handler: () => {
-            this.guardarCambiosEnModelo();
-            console.log('Datos actualizados', this.usuario);
-            this.mostrarMensajeExito();
-
-          },
-        },
-      ],
+      header: 'Error',
+      message: mensaje,
+      buttons: ['OK']
     });
-
     await alert.present();
   }
+  
+
+
 
   async mostrarMensajeExito() {
     const alert = await this.alertController.create({

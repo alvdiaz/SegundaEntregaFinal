@@ -13,6 +13,7 @@ import { LanguageComponent } from 'src/app/components/language/language.componen
 import { colorWandOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataBaseService } from 'src/app/services/data-base.service';
 
 
 
@@ -31,6 +32,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class CorreoPage implements OnInit, AfterViewInit {
 
+  usuario: Usuario = new Usuario();
+
+
   @ViewChild('page', { read: ElementRef }) page!: ElementRef;
 
 
@@ -41,30 +45,44 @@ export class CorreoPage implements OnInit, AfterViewInit {
 
   constructor(private router: Router,
     private alertController: AlertController,
-    private animationController: AnimationController
+    private animationController: AnimationController,
+    private dbService: DataBaseService,
+    private auth: AuthService // Inyectamos el servicio de base de datos,
   ) {
+
+    this.auth.usuarioAutenticado.subscribe((usuario) => {
+      console.log(usuario);
+      if (usuario) {
+        this.usuario = usuario;
+      }
+    });
     
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.dbService.inicializarBaseDeDatos();
+  }
 
   // Función para validar si el correo ingresado pertenece a un usuario
-  validarCorreo() {
-    const usuarioService = new Usuario();
-  
-    // Buscar si existe el usuario con el correo ingresado
-    const usuarioEncontrado = listaUsuarios.find(usuario => usuario.correo === this.correoIngresado);
-  
+  async validarCorreo() {
+    const usuarioEncontrado = await this.dbService.buscarUsuarioPorCorreo(this.correoIngresado);
+    
     if (usuarioEncontrado) {
-      // Si el correo es válido, almacenar el usuario actual
-      this.usuarioActual = usuarioEncontrado;
-      // Redirigir a la página de pregunta secreta con el estado (usuario actual)
-      this.router.navigate(['/pregunta'], { state: { usuario: this.usuarioActual } });
+      // Redirige a la página de pregunta secreta con el usuario encontrado
+      this.router.navigate(['/pregunta'], { state: { usuario: usuarioEncontrado } });
     } else {
-      // Si el correo no es válido, redirigir a la página de error
-      this.router.navigate(['/incorrecto']);
+      // Muestra una alerta si el correo no está registrado
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'El correo ingresado no está registrado.',
+        buttons: ['Aceptar']
+      });
+      await alert.present();
     }
   }
+  
+  
+  
 
   public ngAfterViewInit() {
     // this.animarDeslizarVertical()

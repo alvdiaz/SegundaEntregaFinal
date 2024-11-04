@@ -66,7 +66,14 @@ public datosClase: any;
   constructor(private router: Router,
   private animationController: AnimationController, private authService : AuthService
 
-  ) { }
+  ) {
+    this.authService.usuarioAutenticado.subscribe((usuario) => {
+      console.log(usuario);
+      if (usuario) {
+        this.usuario = usuario;
+      }
+    });
+  }
 
   ngOnInit() {
     // Verificamos si hay datos de QR en el estado de navegación

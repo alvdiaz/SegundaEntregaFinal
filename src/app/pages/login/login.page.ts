@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, NavigationExtras, RouterModule } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.page.scss'],
   standalone: true,
   imports: [
-    CommonModule            // CGV-Permite usar directivas comunes de Angular
+    RouterModule
+  , CommonModule            // CGV-Permite usar directivas comunes de Angular
   , FormsModule             // CGV-Permite usar formularios
   , IonicModule             // CGV-Permite usar componentes de Ionic como IonContent, IonItem, etc.
   , TranslateModule         // CGV-Permite usar pipe 'translate'

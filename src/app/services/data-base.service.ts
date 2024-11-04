@@ -143,9 +143,23 @@ export class DataBaseService {
   async buscarUsuarioPorCuenta(cuenta: string): Promise<Usuario | undefined> {
     const usuarios: Usuario[]= (await this.db.query(
       'SELECT * FROM USUARIO WHERE cuenta=?;',
-      [cuenta])).values as Usuario[];
+      [cuenta])).values as Usuario[]; 
     return usuarios[0];
   }
+
+  async buscarUsuarioPorCorreo(correo: string): Promise<Usuario | undefined> {
+    const usuarios: Usuario[] = (await this.db.query(
+      'SELECT * FROM USUARIO WHERE correo=?;',
+      [correo]
+    )).values as Usuario[];
+    return usuarios[0];
+  }
+
+  async validarPreguntaSecreta(cuenta: string, respuestaSecreta: string): Promise<boolean> {
+    const usuario = await this.leerUsuario(cuenta);
+    return usuario ? usuario.respuestaSecreta.toLowerCase() === respuestaSecreta.toLowerCase().trim() : false;
+  }
+  
 
 }
 //

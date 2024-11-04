@@ -20,10 +20,36 @@ export const routes: Routes = [
   canActivate: [inicioGuard]
 },
 
+{ 
+  path: 'correo',
+  loadComponent: () => import('./pages/correo/correo.page').then( m => m.CorreoPage),
+},
+
+{ 
+  path: 'incorrecto',
+  loadComponent: () => import('./pages/incorrecto/incorrecto.page').then( m => m.IncorrectoPage),
+},
+{ 
+  path: 'correcto',
+  loadComponent: () => import('./pages/correcto/correcto.page').then( m => m.CorrectoPage),
+},
+
+{ 
+  path: 'pregunta',
+  loadComponent: () => import('./pages/pregunta/pregunta.page').then( m => m.PreguntaPage),
+},
+
+
   {
     path: 'miclase',
     loadComponent: () => import('./pages/miclase/miclase.page').then( m => m.MiclasePage)
   },
+
+  {
+    path: 'misdatos',
+    loadComponent: () => import('./pages/misdatos/misdatos.page').then( m => m.MisdatosPage)
+  },
+
 
   {
     path: 'theme',

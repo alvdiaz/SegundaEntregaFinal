@@ -27,6 +27,9 @@ import { AuthService } from 'src/app/services/auth.service';
 ]
 })
 export class CorrectoPage implements OnInit, AfterViewInit {
+  usuario: Usuario;
+
+  
 
   @ViewChild('page', { read: ElementRef }) page!: ElementRef;
 
@@ -36,7 +39,13 @@ export class CorrectoPage implements OnInit, AfterViewInit {
   constructor(private router: Router,
     private alertController: AlertController,
     private animationController: AnimationController
-  ) { }
+    
+  ) {
+        // Obtener el usuario desde el estado de la navegación
+        const nav = this.router.getCurrentNavigation();
+        this.usuario = nav?.extras.state?.['usuario'];
+      
+   }
 
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();

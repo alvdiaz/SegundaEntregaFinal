@@ -30,6 +30,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class InicioPage implements OnInit, AfterViewInit {
 
+  usuario: Usuario = new Usuario();
+
+
   @ViewChild('video')
   private video!: ElementRef;
 
@@ -42,8 +45,6 @@ export class InicioPage implements OnInit, AfterViewInit {
   @ViewChild('page', { read: ElementRef })
   page!: ElementRef;
 
-  public usuario: Usuario = new Usuario();
-  public persona: Persona = new Persona();
   public escaneando = false;
   public datosQR: string = '';
 
@@ -63,8 +64,17 @@ export class InicioPage implements OnInit, AfterViewInit {
     private router: Router,
     private alertController: AlertController,
     private animationController: AnimationController,
-    private authService: AuthService
-  ) {}
+    private auth: AuthService
+  ) {
+
+
+    this.auth.usuarioAutenticado.subscribe((usuario) => {
+      console.log(usuario);
+      if (usuario) {
+        this.usuario = usuario;
+      }
+    });
+  }
 
   public ngOnInit() {
 
@@ -179,7 +189,7 @@ export class InicioPage implements OnInit, AfterViewInit {
 
   public cerrarSesion(): void {
     // Navegamos a la página de login
-    this.authService.logout();
+    this.auth.logout();
     }
 
   public MisdatosPage(): void {
