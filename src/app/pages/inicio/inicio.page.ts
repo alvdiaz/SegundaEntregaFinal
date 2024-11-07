@@ -25,7 +25,7 @@ import { AuthService } from 'src/app/services/auth.service';
     , FormsModule             // CGV-Permite usar formularios
     , IonicModule             // CGV-Permite usar componentes de Ionic como IonContent, IonItem, etc.
     , TranslateModule         // CGV-Permite usar pipe 'translate'
-    , LanguageComponent // CGV-Lista de idiomas
+    , LanguageComponent
   ]
 })
 export class InicioPage implements OnInit, AfterViewInit {
@@ -193,28 +193,21 @@ export class InicioPage implements OnInit, AfterViewInit {
     }
 
   public MisdatosPage(): void {
-    const navigationExtras: NavigationExtras = {
-      state: {
-        usuario: this.usuario // Pasar el objeto usuario
-      }
-    };
-    this.router.navigate(['/misdatos'], navigationExtras);
+
+    this.router.navigate(['/misdatos']);
   }
 
   public MiclasePage(): void {
-    const navigationExtras: NavigationExtras = {
-      state: {
-        usuario: this.usuario // Pasar el objeto usuario
-      }
-    };
-    this.router.navigate(['/miclase'], navigationExtras);
+
+    this.router.navigate(['/miclase']);
   }
   public InicioPage(): void {
-    const navigationExtras: NavigationExtras = {
-      state: {
-        usuario: this.usuario // Pasar el objeto usuario
-      }
-    };
-    this.router.navigate(['/inicio'], navigationExtras);
+
+    this.router.navigate(['/inicio']);
+  }
+
+  public ForoPage(): void {
+
+    this.router.navigate(['/forum']);
   }
 }

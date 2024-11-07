@@ -52,7 +52,14 @@ export const routes: Routes = [
 
 
   {
+    path: 'forum',
+    loadComponent: () => import('./pages/forum/forum.page').then( m => m.ForumPage)
+  },
+
+
+  {
     path: 'theme',
     loadComponent: () => import('./pages/theme/theme.page').then( m => m.ThemePage)
   },
+
 ];
